@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
 // 読み上げ用オブジェクトの取得
-const synth = window.speechSynthesis;
+
 
 export const TextToSpeechForm = () => {
   // 読み上げるテキスト
@@ -21,30 +21,23 @@ export const TextToSpeechForm = () => {
   // セレクトボックスのイベントハンドラー
   const handleChange = (e) => {
     // ボイスの設定
-    setVoiceURI(e.target.value);
+
   };
   
   // 読み上げボタンのイベントハンドラー
   const handleClick = (e) => {
-    // 発生用オブジェクト作成
-    const utterance = new window.SpeechSynthesisUtterance(text);
-    // 選択したボイスを取得
-    const voice = voices.find(v => v.voiceURI === voiceURI);
-    // ボイスの設定
-    utterance.voice = voice;
-    // 読み上げる
-    synth.speak(utterance);
+    // 発声用オブジェクト作成
+    
   };
   
   // 読み上げるテキストのイベントハンドラー
   const handleOnChangeTextField = (e) => {
-    setText(e.target.value);
+    
   };
   
   useEffect(() => {
     // ボイス一覧取得
-    const vs = synth.getVoices().filter(v => v.lang === 'ja-JP');
-    setVoices(vs);
+    
   },[]);
   
   return (
@@ -57,43 +50,8 @@ export const TextToSpeechForm = () => {
         >
           テキスト読み上げ
         </Typography>
-        <FormControl size="small">
-          <InputLabel id="voice-select-label">音声選択</InputLabel>
-          <Select
-            labelId="voice-select-label"
-            id="voice-select"
-            label="音声選択"
-            variant="outlined"
-            onChange={handleChange}
-            defaultValue=""
-          >
-            {voices.map((v,index) => (
-              <MenuItem key={index} value={v.voiceURI}>{v.name}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <Box>
-          <TextField
-            id="speech-text"
-            label="読み上げるテキスト"
-            fullWidth
-            multiline
-            rows={5}
-            defaultValue={text}
-            onChange={handleOnChangeTextField}
-          />
-        </Box>
-        <Box>
-          <Button 
-            variant="contained" 
-            size="large" 
-            onClick={handleClick}
-          >
-            読み上げ
-          </Button>
-        </Box>
+        
       </Stack>
     </Container>
   );  
 };
-
