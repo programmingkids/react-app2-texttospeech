@@ -45,8 +45,25 @@ export const TextToSpeechForm = () => {
     // ボイス一覧取得
     const vs = synth.getVoices().filter(v => v.lang === 'ja-JP');
     setVoices(vs);
+    
+    // 初回読み上げ
+    const text = 'こんにちは、テキスト読み上げアプリです';
+    const utterance = new window.SpeechSynthesisUtterance(text);
+    synth.speak(utterance);
   },[]);
   
+  const handleClickHowTo = (e) => {
+    const text = '音声を選択します。テキストボックスに読み上げる文字を入力します。最後に、読み上げボタンをクリックします';
+    // 発生用オブジェクト作成
+    const utterance = new window.SpeechSynthesisUtterance(text);
+    // 選択したボイスを取得
+    const voice = voices.find(v => v.voiceURI === voiceURI);
+    // ボイスの設定
+    utterance.voice = voice;
+    // 読み上げる
+    synth.speak(utterance);
+  };
+    
   return (
     <Container maxWidth="lg">
       <Stack spacing={3} sx={{}}>
@@ -88,8 +105,16 @@ export const TextToSpeechForm = () => {
             variant="contained" 
             size="large" 
             onClick={handleClick}
+            sx={{mr:2}}
           >
             読み上げ
+          </Button>
+          <Button 
+            variant="contained" 
+            size="large" 
+            onClick={handleClickHowTo}
+          >
+            使い方
           </Button>
         </Box>
       </Stack>
