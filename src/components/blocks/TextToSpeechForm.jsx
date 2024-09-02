@@ -35,8 +35,8 @@ export const TextToSpeechForm = () => {
   }, []);
 
   return (
-    <Container maxWidth="lg">
-      <Stack spacing={3} sx={{}}>
+    <Container maxWidth="sm">
+      <Stack gap={3} sx={{}}>
         <Typography variant="subtitle" component="h1" marginTop={2}>
           テキスト読み上げ
         </Typography>
